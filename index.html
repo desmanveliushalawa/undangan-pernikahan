@@ -1,1359 +1,556 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan Hendry & Nesra</title>
-
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    
     <!-- Google Fonts Premium & Luxury Typography -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <!-- React & ReactDOM (Menggunakan CDNJS yang lebih stabil) -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"
-      crossorigin="anonymous"
-    ></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+    
     <!-- Babel Compiler -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.6/babel.min.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.6/babel.min.js" crossorigin="anonymous"></script>
 
     <!-- Global Error Catcher (Anti Layar Putih) -->
     <script>
-      window.addEventListener("error", function (event) {
-        document.getElementById("root").style.display = "none";
-        document.getElementById("error-screen").style.display = "flex";
-        document.getElementById("error-message").innerText =
-          event.message + " di baris " + event.lineno;
-      });
+        window.addEventListener('error', function(event) {
+            document.getElementById('root').style.display = 'none';
+            document.getElementById('error-screen').style.display = 'flex';
+            document.getElementById('error-message').innerText = event.message + " di baris " + event.lineno;
+        });
     </script>
 
     <style>
-      .font-serif-lux {
-        font-family: "Cormorant Garamond", serif;
-      }
-      .font-sans-lux {
-        font-family: "Montserrat", sans-serif;
-      }
-      .font-display-lux {
-        font-family: "Playfair Display", serif;
-      }
+        .font-serif-lux { font-family: 'Cormorant Garamond', serif; }
+        .font-sans-lux { font-family: 'Montserrat', sans-serif; }
+        .font-display-lux { font-family: 'Playfair Display', serif; }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes slideDown {
-        from {
-          opacity: 0;
-          transform: translate(-50%, -100%);
-        }
-        to {
-          opacity: 1;
-          transform: translate(-50%, 0);
-        }
-      }
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes bounceSlow {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-15px);
-        }
-      }
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      .animate-fadeIn {
-        animation: fadeIn 1.8s ease-out forwards;
-      }
-      .animate-slideDown {
-        animation: slideDown 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
-      }
-      .animate-slideUp {
-        animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-      .animate-bounceSlow {
-        animation: bounceSlow 4.5s ease-in-out infinite;
-      }
-
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 4px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #e8c5c8;
-        border-radius: 10px;
-      }
-      .scrollbar-none::-webkit-scrollbar {
-        display: none;
-      }
-      .scrollbar-none {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translate(-50%, -100%); } to { opacity: 1; transform: translate(-50%, 0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounceSlow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .animate-fadeIn { animation: fadeIn 1.8s ease-out forwards; }
+        .animate-slideDown { animation: slideDown 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards; }
+        .animate-slideUp { animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-bounceSlow { animation: bounceSlow 4.5s ease-in-out infinite; }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E8C5C8; border-radius: 10px; }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
-  </head>
-  <body
-    class="bg-[#FFFBF7] text-[#564244] font-sans selection:bg-[#E8C5C8] relative min-h-screen overflow-x-hidden"
-  >
+</head>
+<body class="bg-[#FFFBF7] text-[#564244] font-sans selection:bg-[#E8C5C8] relative min-h-screen overflow-x-hidden">
+
     <!-- ERROR SCREEN (Disembunyikan secara default) -->
-    <div
-      id="error-screen"
-      style="
-        display: none;
-        height: 100vh;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 20px;
-      "
-    >
-      <svg
-        width="48"
-        height="48"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#ef4444"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        style="margin-bottom: 16px"
-      >
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="12" y1="8" x2="12" y2="12"></line>
-        <line x1="12" y1="16" x2="12.01" y2="16"></line>
-      </svg>
-      <h2
-        style="
-          color: #2c1b1d;
-          font-family: &quot;Playfair Display&quot;, serif;
-          font-size: 24px;
-          margin-bottom: 8px;
-        "
-      >
-        Ups, terjadi kesalahan sistem!
-      </h2>
-      <p style="color: #564244; font-size: 14px; margin-bottom: 16px">
-        Tolong screenshot halaman ini dan berikan ke developer:
-      </p>
-      <div
-        id="error-message"
-        style="
-          background: #fee2e2;
-          color: #991b1b;
-          padding: 12px;
-          border-radius: 8px;
-          font-family: monospace;
-          font-size: 12px;
-          max-width: 90%;
-          word-break: break-all;
-        "
-      ></div>
+    <div id="error-screen" style="display: none; height: 100vh; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 16px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <h2 style="color: #2C1B1D; font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 8px;">Ups, terjadi kesalahan sistem!</h2>
+        <p style="color: #564244; font-size: 14px; margin-bottom: 16px;">Tolong screenshot halaman ini dan berikan ke developer:</p>
+        <div id="error-message" style="background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 12px; max-width: 90%; word-break: break-all;"></div>
     </div>
 
     <!-- MAIN ROOT WITH LOADING SCREEN -->
     <div id="root">
-      <div
-        style="
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          background-color: #fffbf7;
-        "
-      >
-        <div
-          style="
-            width: 40px;
-            height: 40px;
-            border: 3px solid #f5e6d3;
-            border-top: 3px solid #c9a84c;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-          "
-        ></div>
-        <p
-          style="
-            margin-top: 20px;
-            font-family: &quot;Montserrat&quot;, sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 3px;
-            color: #c9a84c;
-            text-transform: uppercase;
-          "
-        >
-          Memuat Undangan...
-        </p>
-      </div>
+        <div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #FFFBF7;">
+            <div style="width: 40px; height: 40px; border: 3px solid #F5E6D3; border-top: 3px solid #C9A84C; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+            <p style="margin-top: 20px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 3px; color: #C9A84C; text-transform: uppercase;">Memuat Undangan...</p>
+        </div>
     </div>
 
     <!-- REACT APPLICATION SCRIPT -->
     <script type="text/babel">
-      try {
-        const { useState, useEffect, useRef } = React;
+        try {
+            const { useState, useEffect, useRef } = React;
 
-        const RSVP_API_URL =
-          "https://sheetdb.io/api/v1/y2eos3hgw7a0d?sheet=RSVP";
-        const UCAPAN_API_URL =
-          "https://sheetdb.io/api/v1/y2eos3hgw7a0d?sheet=Ucapan";
+            const RSVP_API_URL = "https://sheetdb.io/api/v1/y2eos3hgw7a0d?sheet=RSVP"; 
+            const UCAPAN_API_URL = "https://sheetdb.io/api/v1/y2eos3hgw7a0d?sheet=Ucapan"; 
 
-        const DROPBOX_AUDIO_URL =
-          "https://www.dropbox.com/scl/fi/0pqkgakpyxo3043zleuul/PERFECT-ED-SHEERAN-Cello-Piano-Cover-Swiss-Duo-PIANOCELLO.mp3?rlkey=546fq658hl8sm6dl8javp3nfm&st=snf9qsxs&raw=1";
-        const AUDIO_FILE_ID = "1OLgfaWVFtu_kzyKYYY2ZaS1kmYYvPL0D";
-        const FALLBACK_AUDIO_URL =
-          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+            const DROPBOX_AUDIO_URL = "https://www.dropbox.com/scl/fi/0pqkgakpyxo3043zleuul/PERFECT-ED-SHEERAN-Cello-Piano-Cover-Swiss-Duo-PIANOCELLO.mp3?rlkey=546fq658hl8sm6dl8javp3nfm&st=snf9qsxs&raw=1"; 
+            const AUDIO_FILE_ID = "1OLgfaWVFtu_kzyKYYY2ZaS1kmYYvPL0D"; 
+            const FALLBACK_AUDIO_URL = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
 
-        const COVER_BG_IMAGE_ID = "";
-        const HERO_IMAGE_ID = "";
-        const GROOM_IMAGE_ID = "";
-        const BRIDE_IMAGE_ID = "";
+            const COVER_BG_IMAGE_ID = "";                             
+            const HERO_IMAGE_ID = "";                                 
+            const GROOM_IMAGE_ID = "";                                
+            const BRIDE_IMAGE_ID = "";                                
 
-        const getDriveAudioUrl = (id) => {
-          if (!id || id === "1XyZ_abcdefGHIJKLMNOP12345")
-            return FALLBACK_AUDIO_URL;
-          return `https://docs.google.com/uc?export=download&id=${id}`;
-        };
-
-        const getDriveImageUrl = (id, fallback) => {
-          if (!id) return fallback;
-          return `https://docs.google.com/uc?export=view&id=${id}`;
-        };
-
-        const AUDIO_URL = DROPBOX_AUDIO_URL || getDriveAudioUrl(AUDIO_FILE_ID);
-        const COVER_BG_URL = getDriveImageUrl(
-          COVER_BG_IMAGE_ID,
-          "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=cover&w=1080&q=80",
-        );
-        const HERO_IMAGE_URL = getDriveImageUrl(
-          HERO_IMAGE_ID,
-          "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=cover&w=400&h=500&q=80",
-        );
-        const GROOM_IMAGE_URL = getDriveImageUrl(
-          GROOM_IMAGE_ID,
-          "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=300&h=300&q=80",
-        );
-        const BRIDE_IMAGE_URL = getDriveImageUrl(
-          BRIDE_IMAGE_ID,
-          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&h=300&q=80",
-        );
-
-        const Icons = {
-          Heart: ({ size = 20, className = "", fill = "none" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill={fill}
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-            </svg>
-          ),
-          MapPin: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-          ),
-          Calendar: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-              <line x1="16" x2="16" y1="2" y2="6" />
-              <line x1="8" x2="8" y1="2" y2="6" />
-              <line x1="3" x2="21" y1="10" y2="10" />
-            </svg>
-          ),
-          Music: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M9 18V5l12-2v13" />
-              <circle cx="6" cy="18" r="3" />
-              <circle cx="18" cy="16" r="3" />
-            </svg>
-          ),
-          Pause: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="14" y="4" width="4" height="16" rx="1" />
-              <rect x="6" y="4" width="4" height="16" rx="1" />
-            </svg>
-          ),
-          Copy: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-            </svg>
-          ),
-          Send: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="22" x2="11" y1="2" y2="13" />
-              <polygon points="22 2 15 22 11 13 2 9 22 2" />
-            </svg>
-          ),
-          ChevronDown: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m6 9 6 6 6-6" />
-            </svg>
-          ),
-          Gift: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect width="18" height="12" x="3" y="8" rx="2" />
-              <path d="M12 8V22" />
-              <path d="M19 12H5" />
-              <path d="M12 8a3 3 0 1 0-3-3" />
-              <path d="M12 8a3 3 0 1 1 3-3" />
-            </svg>
-          ),
-          MessageSquare: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>
-          ),
-          CheckCircle2: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-              <path d="m9 12 2 2 4-4" />
-            </svg>
-          ),
-          X: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
-          ),
-          Loader2: ({ size = 20, className = "" }) => (
-            <svg
-              className={`${className} animate-spin`}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-            </svg>
-          ),
-          Volume2: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-            </svg>
-          ),
-          AlertCircle: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" x2="12" y1="8" y2="12" />
-              <line x1="12" x2="12.01" y1="16" y2="16" />
-            </svg>
-          ),
-          Sparkles: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
-            </svg>
-          ),
-          Bot: ({ size = 20, className = "" }) => (
-            <svg
-              className={className}
-              width={size}
-              height={size}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect width="18" height="12" x="3" y="8" rx="2" />
-              <path d="M12 2v6" />
-              <path d="M8 2h8" />
-              <path d="M18 16v2" />
-              <path d="M6 16v2" />
-            </svg>
-          ),
-        };
-
-        const callGeminiAPI = async (prompt, systemInstruction = "") => {
-          const apiKey = ""; // Disuntikkan saat runtime
-          const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-
-          const payload = {
-            contents: [{ parts: [{ text: prompt }] }],
-            systemInstruction: systemInstruction
-              ? { parts: [{ text: systemInstruction }] }
-              : undefined,
-          };
-
-          try {
-            const response = await fetch(apiUrl, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            });
-            if (response.ok) {
-              const result = await response.json();
-              return result.candidates?.[0]?.content?.parts?.[0]?.text || "";
-            }
-          } catch (error) {
-            console.error("Gemini API Error:", error);
-          }
-          return "";
-        };
-
-        const SakuraCanvas = () => {
-          const canvasRef = useRef(null);
-
-          useEffect(() => {
-            const canvas = canvasRef.current;
-            if (!canvas) return;
-            const ctx = canvas.getContext("2d");
-            let animationFrameId;
-
-            const resizeCanvas = () => {
-              canvas.width = window.innerWidth;
-              canvas.height = window.innerHeight;
+            const getDriveAudioUrl = (id) => {
+                if (!id || id === "1XyZ_abcdefGHIJKLMNOP12345") return FALLBACK_AUDIO_URL;
+                return `https://docs.google.com/uc?export=download&id=${id}`;
             };
-            window.addEventListener("resize", resizeCanvas);
-            resizeCanvas();
 
-            const petals = [];
-            class Petal {
-              constructor() {
-                this.reset();
-                this.y = Math.random() * canvas.height;
-              }
-              reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = -20;
-                this.size = Math.random() * 8 + 6;
-                this.speedX = Math.random() * 1.5 - 0.5;
-                this.speedY = Math.random() * 1.2 + 0.8;
-                this.rotation = Math.random() * 360;
-                this.rotationSpeed = Math.random() * 1.5 - 0.75;
-                this.color = `rgba(244, 197, 200, ${Math.random() * 0.4 + 0.4})`;
-              }
-              draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate((this.rotation * Math.PI) / 180);
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.bezierCurveTo(
-                  -this.size,
-                  -this.size,
-                  -this.size,
-                  this.size,
-                  0,
-                  this.size * 1.4,
-                );
-                ctx.bezierCurveTo(
-                  this.size,
-                  this.size,
-                  this.size,
-                  -this.size,
-                  0,
-                  0,
-                );
-                ctx.fillStyle = this.color;
-                ctx.fill();
-                ctx.restore();
-              }
-              update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.rotation += this.rotationSpeed;
-                if (
-                  this.y > canvas.height + 20 ||
-                  this.x > canvas.width + 20 ||
-                  this.x < -20
+            const getDriveImageUrl = (id, fallback) => {
+                if (!id) return fallback;
+                return `https://docs.google.com/uc?export=view&id=${id}`;
+            };
+
+            const AUDIO_URL = DROPBOX_AUDIO_URL || getDriveAudioUrl(AUDIO_FILE_ID);
+            const COVER_BG_URL = getDriveImageUrl(COVER_BG_IMAGE_ID, "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=cover&w=1080&q=80");
+            const HERO_IMAGE_URL = getDriveImageUrl(HERO_IMAGE_ID, "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=cover&w=400&h=500&q=80");
+            const GROOM_IMAGE_URL = getDriveImageUrl(GROOM_IMAGE_ID, "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=300&h=300&q=80");
+            const BRIDE_IMAGE_URL = getDriveImageUrl(BRIDE_IMAGE_ID, "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&h=300&q=80");
+
+            const Icons = {
+                Heart: ({ size = 20, className = "", fill = "none" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                ),
+                MapPin: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                ),
+                Calendar: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                ),
+                Music: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                ),
+                Pause: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
+                ),
+                Copy: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                ),
+                Send: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                ),
+                ChevronDown: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                ),
+                Gift: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="12" x="3" y="8" rx="2"/><path d="M12 8V22"/><path d="M19 12H5"/><path d="M12 8a3 3 0 1 0-3-3"/><path d="M12 8a3 3 0 1 1 3-3"/></svg>
+                ),
+                MessageSquare: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                ),
+                CheckCircle2: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                ),
+                X: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                ),
+                Loader2: ({ size = 20, className = "" }) => (
+                    <svg className={`${className} animate-spin`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                ),
+                Volume2: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                ),
+                AlertCircle: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                ),
+                Sparkles: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                ),
+                Bot: ({ size = 20, className = "" }) => (
+                    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="12" x="3" y="8" rx="2"/><path d="M12 2v6"/><path d="M8 2h8"/><path d="M18 16v2"/><path d="M6 16v2"/></svg>
                 )
-                  this.reset();
-              }
-            }
-
-            for (let i = 0; i < 30; i++) petals.push(new Petal());
-            const animate = () => {
-              ctx.clearRect(0, 0, canvas.width, canvas.height);
-              petals.forEach((petal) => {
-                petal.update();
-                petal.draw();
-              });
-              animationFrameId = requestAnimationFrame(animate);
             };
-            animate();
 
-            return () => {
-              window.removeEventListener("resize", resizeCanvas);
-              cancelAnimationFrame(animationFrameId);
-            };
-          }, []);
+            const callGeminiAPI = async (prompt, systemInstruction = "") => {
+                const apiKey = ""; // Disuntikkan saat runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+                
+                const payload = {
+                    contents: [{ parts: [{ text: prompt }] }],
+                    systemInstruction: systemInstruction ? { parts: [{ text: systemInstruction }] } : undefined,
+                };
 
-          return (
-            <canvas
-              ref={canvasRef}
-              className="fixed inset-0 pointer-events-none z-10"
-            />
-          );
-        };
-
-        const ScrollReveal = ({ children, delay = 0 }) => {
-          const [isVisible, setIsVisible] = useState(false);
-          const ref = useRef(null);
-
-          useEffect(() => {
-            const observer = new IntersectionObserver(
-              ([entry]) => {
-                if (entry.isIntersecting) {
-                  setIsVisible(true);
-                  observer.unobserve(entry.target);
+                try {
+                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    if (response.ok) {
+                        const result = await response.json();
+                        return result.candidates?.[0]?.content?.parts?.[0]?.text || "";
+                    }
+                } catch (error) {
+                    console.error("Gemini API Error:", error);
                 }
-              },
-              { threshold: 0.1 },
-            );
-            if (ref.current) observer.observe(ref.current);
-            return () => {
-              if (ref.current) observer.unobserve(ref.current);
+                return "";
             };
-          }, []);
 
-          return (
-            <div
-              ref={ref}
-              style={{ transitionDelay: `${delay}ms` }}
-              className={`transition-all duration-1000 ease-out transform ${isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"}`}
-            >
-              {children}
-            </div>
-          );
-        };
+            const SakuraCanvas = () => {
+                const canvasRef = useRef(null);
 
-        const DiamondDivider = () => (
-          <div className="flex items-center justify-center gap-3 my-8">
-            <div className="h-[1px] w-14 bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
-            <div className="w-2 h-2 bg-[#C9A84C] transform rotate-45 shadow-sm" />
-            <div className="w-1.5 h-1.5 bg-[#C9A84C]/60 transform rotate-45" />
-            <div className="w-2 h-2 bg-[#C9A84C] transform rotate-45 shadow-sm" />
-            <div className="h-[1px] w-14 bg-gradient-to-l from-transparent via-[#C9A84C] to-transparent" />
-          </div>
-        );
+                useEffect(() => {
+                    const canvas = canvasRef.current;
+                    if (!canvas) return;
+                    const ctx = canvas.getContext('2d');
+                    let animationFrameId;
 
-        const App = () => {
-          const [isOpen, setIsOpen] = useState(false);
-          const [isPlaying, setIsPlaying] = useState(false);
-          const [audioError, setAudioError] = useState(false);
-          const [timeLeft, setTimeLeft] = useState({});
-          const [copied, setCopied] = useState(false);
-          const [isSubmittingRsvp, setIsSubmittingRsvp] = useState(false);
-          const [isSubmittingComment, setIsSubmittingComment] = useState(false);
-          const [isLoadingComments, setIsLoadingComments] = useState(false);
-          const [scrollY, setScrollY] = useState(0);
+                    const resizeCanvas = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+                    window.addEventListener('resize', resizeCanvas);
+                    resizeCanvas();
 
-          const [rsvpData, setRsvpData] = useState({
-            name: "",
-            attendance: "Hadir",
-            guests: "1 Orang",
-          });
-          const [newComment, setNewComment] = useState({
-            name: "",
-            message: "",
-          });
-          const [guestBook, setGuestBook] = useState([
-            {
-              name: "Sahabat",
-              message: "Bahagia selalu untuk kalian berdua!",
-              date: "13 Mei 2026",
-            },
-          ]);
-          const [notification, setNotification] = useState({
-            show: false,
-            message: "",
-            type: "success",
-          });
+                    const petals = [];
+                    class Petal {
+                        constructor() { this.reset(); this.y = Math.random() * canvas.height; }
+                        reset() {
+                            this.x = Math.random() * canvas.width;
+                            this.y = -20;
+                            this.size = Math.random() * 8 + 6;
+                            this.speedX = Math.random() * 1.5 - 0.5;
+                            this.speedY = Math.random() * 1.2 + 0.8;
+                            this.rotation = Math.random() * 360;
+                            this.rotationSpeed = Math.random() * 1.5 - 0.75;
+                            this.color = `rgba(244, 197, 200, ${Math.random() * 0.4 + 0.4})`;
+                        }
+                        draw() {
+                            ctx.save(); ctx.translate(this.x, this.y); ctx.rotate((this.rotation * Math.PI) / 180);
+                            ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(-this.size, -this.size, -this.size, this.size, 0, this.size * 1.4);
+                            ctx.bezierCurveTo(this.size, this.size, this.size, -this.size, 0, 0);
+                            ctx.fillStyle = this.color; ctx.fill(); ctx.restore();
+                        }
+                        update() {
+                            this.x += this.speedX; this.y += this.speedY; this.rotation += this.rotationSpeed;
+                            if (this.y > canvas.height + 20 || this.x > canvas.width + 20 || this.x < -20) this.reset();
+                        }
+                    }
 
-          const audioRef = useRef(null);
+                    for (let i = 0; i < 30; i++) petals.push(new Petal());
+                    const animate = () => {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        petals.forEach((petal) => { petal.update(); petal.draw(); });
+                        animationFrameId = requestAnimationFrame(animate);
+                    };
+                    animate();
 
-          const [showAiWishPanel, setShowAiWishPanel] = useState(false);
-          const [aiRelationship, setAiRelationship] = useState("Teman Dekat");
-          const [aiTone, setAiTone] = useState("Penuh Doa & Harapan");
-          const [isGeneratingWish, setIsGeneratingWish] = useState(false);
+                    return () => { window.removeEventListener('resize', resizeCanvas); cancelAnimationFrame(animationFrameId); };
+                }, []);
 
-          const [isChatOpen, setIsChatOpen] = useState(false);
-          const [chatInput, setChatInput] = useState("");
-          const [chatMessages, setChatMessages] = useState([
-            {
-              role: "bot",
-              text: "Halo! Ada yang bisa saya bantu terkait acara pernikahan ini?",
-            },
-          ]);
-          const [isBotResponding, setIsBotResponding] = useState(false);
-          const chatEndRef = useRef(null);
+                return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-10" />;
+            };
 
-          const [currentSlide, setCurrentSlide] = useState(0);
-          const carouselPhotos = [
-            {
-              url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=cover&w=800&q=80",
-              caption:
-                "Dua hati yang mengembara, akhirnya menemukan dermaga bahagianya.",
-            },
-            {
-              url: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=cover&w=800&q=80",
-              caption:
-                "Di bawah semesta yang indah, kita berjanji untuk saling menggenggam erat.",
-            },
-          ];
+            const ScrollReveal = ({ children, delay = 0 }) => {
+                const [isVisible, setIsVisible] = useState(false);
+                const ref = useRef(null);
 
-          useEffect(() => {
-            const targetDate = new Date("August 20, 2026 08:00:00").getTime();
-            const timer = setInterval(() => {
-              const now = new Date().getTime();
-              const difference = targetDate - now;
-              if (difference <= 0) {
-                clearInterval(timer);
-                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-              } else {
-                setTimeLeft({
-                  days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                  hours: Math.floor(
-                    (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-                  ),
-                  minutes: Math.floor(
-                    (difference % (1000 * 60 * 60)) / (1000 * 60),
-                  ),
-                  seconds: Math.floor((difference % (1000 * 60)) / 1000),
-                });
-              }
-            }, 1000);
-            return () => clearInterval(timer);
-          }, []);
+                useEffect(() => {
+                    const observer = new IntersectionObserver(([entry]) => {
+                        if (entry.isIntersecting) { setIsVisible(true); observer.unobserve(entry.target); }
+                    }, { threshold: 0.1 });
+                    if (ref.current) observer.observe(ref.current);
+                    return () => { if (ref.current) observer.unobserve(ref.current); };
+                }, []);
 
-          useEffect(() => {
-            const handleScroll = () => setScrollY(window.scrollY);
-            window.addEventListener("scroll", handleScroll, { passive: true });
-            return () => window.removeEventListener("scroll", handleScroll);
-          }, []);
+                return (
+                    <div ref={ref} style={{ transitionDelay: `${delay}ms` }} className={`transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'}`}>
+                        {children}
+                    </div>
+                );
+            };
 
-          useEffect(() => {
-            if (!isOpen) return;
-            const interval = setInterval(() => {
-              setCurrentSlide((prev) => (prev + 1) % carouselPhotos.length);
-            }, 3500);
-            return () => clearInterval(interval);
-          }, [isOpen]);
+            const DiamondDivider = () => (
+                <div className="flex items-center justify-center gap-3 my-8">
+                    <div className="h-[1px] w-14 bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
+                    <div className="w-2 h-2 bg-[#C9A84C] transform rotate-45 shadow-sm" />
+                    <div className="w-1.5 h-1.5 bg-[#C9A84C]/60 transform rotate-45" />
+                    <div className="w-2 h-2 bg-[#C9A84C] transform rotate-45 shadow-sm" />
+                    <div className="h-[1px] w-14 bg-gradient-to-l from-transparent via-[#C9A84C] to-transparent" />
+                </div>
+            );
 
-          useEffect(() => {
-            const fetchComments = async () => {
-              if (!UCAPAN_API_URL) return;
-              setIsLoadingComments(true);
-              try {
-                const response = await fetch(UCAPAN_API_URL);
-                if (response.ok) {
-                  const data = await response.json();
-                  if (Array.isArray(data))
-                    setGuestBook(
-                      data
-                        .map((item) => ({
-                          name: item.nama,
-                          message: item.ucapan,
-                          date: item.tanggal,
-                        }))
-                        .reverse(),
+            const App = () => {
+                const [isOpen, setIsOpen] = useState(false);
+                const [isPlaying, setIsPlaying] = useState(false);
+                const [audioError, setAudioError] = useState(false);
+                const [timeLeft, setTimeLeft] = useState({});
+                const [copied, setCopied] = useState(false);
+                const [isSubmittingRsvp, setIsSubmittingRsvp] = useState(false);
+                const [isSubmittingComment, setIsSubmittingComment] = useState(false);
+                const [isLoadingComments, setIsLoadingComments] = useState(false);
+                const [scrollY, setScrollY] = useState(0);
+                
+                const [rsvpData, setRsvpData] = useState({ name: '', attendance: 'Hadir', guests: '1 Orang' });
+                const [newComment, setNewComment] = useState({ name: '', message: '' });
+                const [guestBook, setGuestBook] = useState([{ name: "Sahabat", message: "Bahagia selalu untuk kalian berdua!", date: "13 Mei 2026" }]);
+                const [notification, setNotification] = useState({ show: false, message: '', type: 'success' });
+                
+                const audioRef = useRef(null);
+
+                const [showAiWishPanel, setShowAiWishPanel] = useState(false);
+                const [aiRelationship, setAiRelationship] = useState('Teman Dekat');
+                const [aiTone, setAiTone] = useState('Penuh Doa & Harapan');
+                const [isGeneratingWish, setIsGeneratingWish] = useState(false);
+
+                const [isChatOpen, setIsChatOpen] = useState(false);
+                const [chatInput, setChatInput] = useState('');
+                const [chatMessages, setChatMessages] = useState([{ role: 'bot', text: 'Halo! Ada yang bisa saya bantu terkait acara pernikahan ini?' }]);
+                const [isBotResponding, setIsBotResponding] = useState(false);
+                const chatEndRef = useRef(null);
+
+                const [currentSlide, setCurrentSlide] = useState(0);
+                const carouselPhotos = [
+                    { url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=cover&w=800&q=80", caption: "Dua hati yang mengembara, akhirnya menemukan dermaga bahagianya." },
+                    { url: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=cover&w=800&q=80", caption: "Di bawah semesta yang indah, kita berjanji untuk saling menggenggam erat." }
+                ];
+
+                useEffect(() => {
+                    const targetDate = new Date("August 20, 2026 08:00:00").getTime();
+                    const timer = setInterval(() => {
+                        const now = new Date().getTime();
+                        const difference = targetDate - now;
+                        if (difference <= 0) {
+                            clearInterval(timer); setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+                        } else {
+                            setTimeLeft({
+                                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                                hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                                minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+                                seconds: Math.floor((difference % (1000 * 60)) / 1000)
+                            });
+                        }
+                    }, 1000);
+                    return () => clearInterval(timer);
+                }, []);
+
+                useEffect(() => {
+                    const handleScroll = () => setScrollY(window.scrollY);
+                    window.addEventListener('scroll', handleScroll, { passive: true });
+                    return () => window.removeEventListener('scroll', handleScroll);
+                }, []);
+
+                useEffect(() => {
+                    if (!isOpen) return;
+                    const interval = setInterval(() => { setCurrentSlide((prev) => (prev + 1) % carouselPhotos.length); }, 3500);
+                    return () => clearInterval(interval);
+                }, [isOpen]);
+
+                useEffect(() => {
+                    const fetchComments = async () => {
+                        if (!UCAPAN_API_URL) return;
+                        setIsLoadingComments(true);
+                        try {
+                            const response = await fetch(UCAPAN_API_URL);
+                            if (response.ok) {
+                                const data = await response.json();
+                                // PERBAIKAN: Membaca huruf kecil maupun Kapital dari Google Sheets
+                                if (Array.isArray(data)) {
+                                    setGuestBook(data.map(item => ({ 
+                                        name: item.nama || item.Nama || "Tamu", 
+                                        message: item.ucapan || item.Ucapan || item.message || "", 
+                                        date: item.tanggal || item.Tanggal || item.date || "" 
+                                    })).reverse());
+                                }
+                            }
+                        } catch (error) { console.error(error); } finally { setIsLoadingComments(false); }
+                    };
+                    if (isOpen) fetchComments();
+                }, [isOpen]);
+
+                useEffect(() => { if (isChatOpen) chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [chatMessages, isChatOpen]);
+
+                const showToast = (msg, type = 'success') => {
+                    setNotification({ show: true, message: msg, type });
+                    setTimeout(() => setNotification({ show: false, message: '', type: 'success' }), 5000);
+                };
+
+                const handleOpenInvitation = () => {
+                    setIsOpen(true); setIsPlaying(true);
+                    setTimeout(() => { if (audioRef.current) audioRef.current.play().catch(handleAudioError); }, 600);
+                };
+
+                const handleAudioError = () => {
+                    setAudioError(true);
+                    if (audioRef.current && audioRef.current.src !== FALLBACK_AUDIO_URL) {
+                        audioRef.current.src = FALLBACK_AUDIO_URL; audioRef.current.load();
+                        if (isPlaying) audioRef.current.play().catch(console.error);
+                    }
+                };
+
+                const toggleMusic = () => {
+                    if (isPlaying) audioRef.current.pause(); else audioRef.current.play().catch(handleAudioError);
+                    setIsPlaying(!isPlaying);
+                };
+
+                const copyToClipboard = (text) => {
+                    const el = document.createElement('textarea'); el.value = text; document.body.appendChild(el);
+                    el.select(); document.execCommand('copy'); document.body.removeChild(el);
+                    setCopied(true); showToast("Nomor rekening disalin!"); setTimeout(() => setCopied(false), 2000);
+                };
+
+                const submitRSVP = async (e) => {
+                    e.preventDefault();
+                    if (!rsvpData.name) return showToast("Mohon isi nama", "error");
+                    setIsSubmittingRsvp(true);
+                    try {
+                        const response = await fetch(RSVP_API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ data: [{ nama: rsvpData.name, kehadiran: rsvpData.attendance, jumlah_tamu: rsvpData.guests, tanggal: new Date().toLocaleString() }] }) });
+                        if (response.ok) { showToast("Konfirmasi dikirim!"); setRsvpData({ name: '', attendance: 'Hadir', guests: '1 Orang' }); }
+                    } catch (error) { showToast("Gagal menyimpan data.", "error"); } finally { setIsSubmittingRsvp(false); }
+                };
+
+                const submitComment = async () => {
+                    if (!newComment.name || !newComment.message) return showToast("Lengkapi nama & ucapan", "error");
+                    setIsSubmittingComment(true);
+                    
+                    // Format bahasa Indonesia untuk dikirim dan disimpan ke Google Sheets
+                    const payload = { nama: newComment.name, ucapan: newComment.message, tanggal: new Date().toLocaleDateString() };
+                    
+                    // PERBAIKAN: Format bahasa Inggris khusus untuk ditampilkan instan di layar
+                    const displayData = { name: newComment.name, message: newComment.message, date: new Date().toLocaleDateString() };
+                    
+                    try {
+                        const response = await fetch(UCAPAN_API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ data: [payload] }) });
+                        if (response.ok) { 
+                            setGuestBook([displayData, ...guestBook]); 
+                            setNewComment({ name: '', message: '' }); 
+                            showToast("Ucapan terkirim!"); 
+                        }
+                    } catch (error) { showToast("Gagal mengirim ucapan.", "error"); } finally { setIsSubmittingComment(false); }
+                };
+
+                const handleSendMessageToBot = async (customMessage = "") => {
+                    const textToSend = customMessage || chatInput;
+                    if (!textToSend.trim()) return;
+                    const updatedMessages = [...chatMessages, { role: 'user', text: textToSend }];
+                    setChatMessages(updatedMessages); if (!customMessage) setChatInput(''); setIsBotResponding(true);
+                    try {
+                        const response = await callGeminiAPI(textToSend, "Kamu asisten pernikahan Hendry & Nesra. Jawab ramah & singkat.");
+                        if (response) setChatMessages([...updatedMessages, { role: 'bot', text: response }]);
+                    } catch (error) { setChatMessages([...updatedMessages, { role: 'bot', text: "Maaf, asisten sibuk. Cek rincian di web ya!" }]); } finally { setIsBotResponding(false); }
+                };
+
+                if (!isOpen) {
+                    return (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FFFBF7] overflow-hidden">
+                            <SakuraCanvas />
+                            <div className="absolute inset-0 opacity-25"><img src={COVER_BG_URL} alt="bg" className="w-full h-full object-cover" /></div>
+                            <div className="relative text-center px-6 animate-fadeIn z-20">
+                                <p className="tracking-[0.4em] uppercase text-[11px] mb-4 text-[#C9A84C] font-semibold animate-pulse">The Wedding of</p>
+                                <h1 className="text-5xl sm:text-6xl font-serif-lux mb-2 text-[#2C1B1D] font-light">Hendry & Nesra</h1>
+                                <p className="mb-8 font-serif-lux italic text-[#C9A84C] text-sm">"Kebaikan Tuhan mempertemukan kita"</p>
+                                <button onClick={handleOpenInvitation} className="bg-gradient-to-r from-[#DFBA5E] via-[#C9A84C] to-[#E5C169] text-[#2C1B1D] px-8 py-3.5 rounded-full flex items-center gap-2.5 mx-auto hover:scale-105 transition-transform shadow-xl font-medium tracking-wider text-xs uppercase">
+                                    <Icons.Music size={14} className="text-[#2C1B1D]" /> Buka Undangan
+                                </button>
+                            </div>
+                        </div>
                     );
                 }
-              } catch (error) {
-                console.error(error);
-              } finally {
-                setIsLoadingComments(false);
-              }
-            };
-            if (isOpen) fetchComments();
-          }, [isOpen]);
 
-          useEffect(() => {
-            if (isChatOpen)
-              chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-          }, [chatMessages, isChatOpen]);
+                return (
+                    <div className="bg-[#FFFBF7] text-[#564244] pb-16">
+                        <SakuraCanvas />
+                        <audio ref={audioRef} loop onError={handleAudioError} preload="auto"><source src={AUDIO_URL} type="audio/mpeg" /></audio>
 
-          const showToast = (msg, type = "success") => {
-            setNotification({ show: true, message: msg, type });
-            setTimeout(
-              () =>
-                setNotification({ show: false, message: "", type: "success" }),
-              5000,
-            );
-          };
+                        {notification.show && (
+                            <div className="fixed top-10 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-sm bg-white/95 backdrop-blur border-l-4 border-[#C9A84C] shadow-2xl rounded-r-xl p-4 flex items-center gap-3 animate-slideDown">
+                                {notification.type === 'error' ? <Icons.AlertCircle className="text-red-500 shrink-0" size={24} /> : <Icons.CheckCircle2 className="text-[#C9A84C] shrink-0" size={24} />}
+                                <p className="text-xs font-semibold text-gray-700 leading-tight">{notification.message}</p>
+                                <button onClick={() => setNotification({ show: false, message: '', type: 'success' })} className="ml-auto opacity-50"><Icons.X size={16} /></button>
+                            </div>
+                        )}
 
-          const handleOpenInvitation = () => {
-            setIsOpen(true);
-            setIsPlaying(true);
-            setTimeout(() => {
-              if (audioRef.current)
-                audioRef.current.play().catch(handleAudioError);
-            }, 600);
-          };
-
-          const handleAudioError = () => {
-            setAudioError(true);
-            if (
-              audioRef.current &&
-              audioRef.current.src !== FALLBACK_AUDIO_URL
-            ) {
-              audioRef.current.src = FALLBACK_AUDIO_URL;
-              audioRef.current.load();
-              if (isPlaying) audioRef.current.play().catch(console.error);
-            }
-          };
-
-          const toggleMusic = () => {
-            if (isPlaying) audioRef.current.pause();
-            else audioRef.current.play().catch(handleAudioError);
-            setIsPlaying(!isPlaying);
-          };
-
-          const copyToClipboard = (text) => {
-            const el = document.createElement("textarea");
-            el.value = text;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand("copy");
-            document.body.removeChild(el);
-            setCopied(true);
-            showToast("Nomor rekening disalin!");
-            setTimeout(() => setCopied(false), 2000);
-          };
-
-          const submitRSVP = async (e) => {
-            e.preventDefault();
-            if (!rsvpData.name) return showToast("Mohon isi nama", "error");
-            setIsSubmittingRsvp(true);
-            try {
-              const response = await fetch(RSVP_API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  data: [
-                    {
-                      nama: rsvpData.name,
-                      kehadiran: rsvpData.attendance,
-                      jumlah_tamu: rsvpData.guests,
-                      tanggal: new Date().toLocaleString(),
-                    },
-                  ],
-                }),
-              });
-              if (response.ok) {
-                showToast("Konfirmasi dikirim!");
-                setRsvpData({
-                  name: "",
-                  attendance: "Hadir",
-                  guests: "1 Orang",
-                });
-              }
-            } catch (error) {
-              showToast("Gagal menyimpan data.", "error");
-            } finally {
-              setIsSubmittingRsvp(false);
-            }
-          };
-
-          const submitComment = async () => {
-            if (!newComment.name || !newComment.message)
-              return showToast("Lengkapi nama & ucapan", "error");
-            setIsSubmittingComment(true);
-            const payload = {
-              nama: newComment.name,
-              ucapan: newComment.message,
-              tanggal: new Date().toLocaleDateString(),
-            };
-            try {
-              const response = await fetch(UCAPAN_API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ data: [payload] }),
-              });
-              if (response.ok) {
-                setGuestBook([payload, ...guestBook]);
-                setNewComment({ name: "", message: "" });
-                showToast("Ucapan terkirim!");
-              }
-            } catch (error) {
-              showToast("Gagal mengirim ucapan.", "error");
-            } finally {
-              setIsSubmittingComment(false);
-            }
-          };
-
-          const handleSendMessageToBot = async (customMessage = "") => {
-            const textToSend = customMessage || chatInput;
-            if (!textToSend.trim()) return;
-            const updatedMessages = [
-              ...chatMessages,
-              { role: "user", text: textToSend },
-            ];
-            setChatMessages(updatedMessages);
-            if (!customMessage) setChatInput("");
-            setIsBotResponding(true);
-            try {
-              const response = await callGeminiAPI(
-                textToSend,
-                "Kamu asisten pernikahan Hendry & Nesra. Jawab ramah & singkat.",
-              );
-              if (response)
-                setChatMessages([
-                  ...updatedMessages,
-                  { role: "bot", text: response },
-                ]);
-            } catch (error) {
-              setChatMessages([
-                ...updatedMessages,
-                {
-                  role: "bot",
-                  text: "Maaf, asisten sibuk. Cek rincian di web ya!",
-                },
-              ]);
-            } finally {
-              setIsBotResponding(false);
-            }
-          };
-
-          if (!isOpen) {
-            return (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FFFBF7] overflow-hidden">
-                <SakuraCanvas />
-                <div className="absolute inset-0 opacity-25">
-                  <img
-                    src={COVER_BG_URL}
-                    alt="bg"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="relative text-center px-6 animate-fadeIn z-20">
-                  <p className="tracking-[0.4em] uppercase text-[11px] mb-4 text-[#C9A84C] font-semibold animate-pulse">
-                    The Wedding of
-                  </p>
-                  <h1 className="text-5xl sm:text-6xl font-serif-lux mb-2 text-[#2C1B1D] font-light">
-                    Hendry & Nesra
-                  </h1>
-                  <p className="mb-8 font-serif-lux italic text-[#C9A84C] text-sm">
-                    "Kebaikan Tuhan mempertemukan kita"
-                  </p>
-                  <button
-                    onClick={handleOpenInvitation}
-                    className="bg-gradient-to-r from-[#DFBA5E] via-[#C9A84C] to-[#E5C169] text-[#2C1B1D] px-8 py-3.5 rounded-full flex items-center gap-2.5 mx-auto hover:scale-105 transition-transform shadow-xl font-medium tracking-wider text-xs uppercase"
-                  >
-                    <Icons.Music size={14} className="text-[#2C1B1D]" /> Buka
-                    Undangan
-                  </button>
-                </div>
-              </div>
-            );
-          }
-
-          return (
-            <div className="bg-[#FFFBF7] text-[#564244] pb-16">
-              <SakuraCanvas />
-              <audio
-                ref={audioRef}
-                loop
-                onError={handleAudioError}
-                preload="auto"
-              >
-                <source src={AUDIO_URL} type="audio/mpeg" />
-              </audio>
-
-              {notification.show && (
-                <div className="fixed top-10 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-sm bg-white/95 backdrop-blur border-l-4 border-[#C9A84C] shadow-2xl rounded-r-xl p-4 flex items-center gap-3 animate-slideDown">
-                  {notification.type === "error" ? (
-                    <Icons.AlertCircle
-                      className="text-red-500 shrink-0"
-                      size={24}
-                    />
-                  ) : (
-                    <Icons.CheckCircle2
-                      className="text-[#C9A84C] shrink-0"
-                      size={24}
-                    />
-                  )}
-                  <p className="text-xs font-semibold text-gray-700 leading-tight">
-                    {notification.message}
-                  </p>
-                  <button
-                    onClick={() =>
-                      setNotification({
-                        show: false,
-                        message: "",
-                        type: "success",
-                      })
-                    }
-                    className="ml-auto opacity-50"
-                  >
-                    <Icons.X size={16} />
-                  </button>
-                </div>
-              )}
-
-              <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
-                <button
-                  onClick={() => setIsChatOpen(!isChatOpen)}
-                  className="bg-gradient-to-tr from-[#DFBA5E] to-[#C9A84C] text-[#2C1B1D] p-3.5 rounded-full shadow-lg border border-white"
-                >
-                  {isChatOpen ? (
-                    <Icons.X size={20} />
-                  ) : (
-                    <Icons.Bot size={20} className="animate-pulse" />
-                  )}
-                </button>
-                <button
-                  onClick={toggleMusic}
-                  className="bg-white/95 backdrop-blur-md p-3.5 rounded-full shadow-lg border border-[#E8C5C8]/60"
-                >
-                  {isPlaying ? (
-                    <Icons.Volume2
-                      size={18}
-                      className="text-[#C9A84C] animate-pulse"
-                    />
-                  ) : (
-                    <Icons.Pause size={18} className="text-gray-400" />
-                  )}
-                </button>
-              </div>
-
-              {/* Chat Bot UI */}
-              {isChatOpen && (
-                <div className="fixed bottom-24 right-6 z-50 w-[90%] sm:w-[380px] h-[480px] bg-white rounded-3xl shadow-2xl border border-[#E8C5C8]/40 overflow-hidden flex flex-col animate-slideUp">
-                  <div className="bg-[#2C1B1D] text-white p-4 flex items-center gap-3">
-                    <Icons.Bot size={20} />{" "}
-                    <h4 className="font-bold text-sm">Asisten AI</h4>{" "}
-                    <button
-                      onClick={() => setIsChatOpen(false)}
-                      className="ml-auto"
-                    >
-                      <Icons.X size={18} />
-                    </button>
-                  </div>
-                  <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#FFFBF7]">
-                    {chatMessages.map((msg, i) => (
-                      <div
-                        key={i}
-                        className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                      >
-                        <div
-                          className={`max-w-[80%] rounded-2xl p-3 text-xs ${msg.role === "user" ? "bg-[#C9A84C] text-[#2C1B1D]" : "bg-[#FDF6ED] text-[#564244]"}`}
-                        >
-                          <p>{msg.text}</p>
+                        <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+                            <button onClick={() => setIsChatOpen(!isChatOpen)} className="bg-gradient-to-tr from-[#DFBA5E] to-[#C9A84C] text-[#2C1B1D] p-3.5 rounded-full shadow-lg border border-white">
+                                {isChatOpen ? <Icons.X size={20} /> : <Icons.Bot size={20} className="animate-pulse" />}
+                            </button>
+                            <button onClick={toggleMusic} className="bg-white/95 backdrop-blur-md p-3.5 rounded-full shadow-lg border border-[#E8C5C8]/60">
+                                {isPlaying ? <Icons.Volume2 size={18} className="text-[#C9A84C] animate-pulse" /> : <Icons.Pause size={18} className="text-gray-400" />}
+                            </button>
                         </div>
-                      </div>
-                    ))}
-                    <div ref={chatEndRef} />
-                  </div>
-                  <div className="p-3 bg-white flex items-center gap-2 border-t">
-                    <input
-                      type="text"
-                      value={chatInput}
-                      onChange={(e) => setChatInput(e.target.value)}
-                      onKeyDown={(e) =>
-                        e.key === "Enter" && handleSendMessageToBot()
-                      }
-                      placeholder="Tanyakan sesuatu..."
-                      className="flex-1 bg-gray-50 text-xs rounded-xl p-3 outline-none"
-                    />
-                    <button
-                      onClick={() => handleSendMessageToBot()}
-                      className="bg-[#2C1B1D] text-white p-3 rounded-xl"
-                    >
-                      <Icons.Send size={14} />
-                    </button>
-                  </div>
-                </div>
-              )}
 
-              <section className="min-h-screen relative flex flex-col items-center justify-center text-center px-4 pt-10 overflow-hidden">
-                <div
-                  className="absolute inset-0 z-0 scale-110"
-                  style={{ transform: `translateY(${scrollY * 0.15}px)` }}
-                >
-                  <img
-                    src={HERO_IMAGE_URL}
-                    alt="Main"
-                    className="w-full h-full object-cover opacity-15"
-                  />
-                </div>
-                <div className="relative z-20 flex flex-col items-center max-w-lg animate-fadeIn">
-                  <div className="mb-8 animate-bounceSlow relative">
-                    <img
-                      src={HERO_IMAGE_URL}
-                      alt="Couple"
-                      className="w-60 h-80 object-cover rounded-t-full shadow-2xl border-4 border-[#FFFBF7] relative z-10"
-                    />
-                  </div>
-                  <h2 className="text-xs tracking-[0.4em] uppercase mb-4 text-[#C9A84C] font-semibold">
-                    The Wedding of
-                  </h2>
-                  <h1 className="text-5xl sm:text-6xl font-serif-lux mb-4 text-[#2C1B1D] font-light">
-                    Hendry & Nesra
-                  </h1>
-                  <DiamondDivider />
-                  <p className="text-sm font-serif-lux italic text-[#C9A84C] mb-8">
-                    Kamis, 20 Agustus 2026
-                  </p>
-                  <div className="flex gap-4 mb-12">
-                    {["Hari", "Jam", "Menit", "Detik"].map((label, i) => (
-                      <div key={label} className="text-center">
-                        <div className="bg-white/80 w-14 h-14 flex items-center justify-center rounded-2xl mb-1.5 shadow">
-                          <span className="text-lg font-semibold text-[#2C1B1D] font-serif-lux">
-                            {Object.values(timeLeft)[i] || "0"}
-                          </span>
-                        </div>
-                        <span className="text-[9px] uppercase tracking-widest font-semibold">
-                          {label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </section>
+                        {/* Chat Bot UI */}
+                        {isChatOpen && (
+                            <div className="fixed bottom-24 right-6 z-50 w-[90%] sm:w-[380px] h-[480px] bg-white rounded-3xl shadow-2xl border border-[#E8C5C8]/40 overflow-hidden flex flex-col animate-slideUp">
+                                <div className="bg-[#2C1B1D] text-white p-4 flex items-center gap-3"><Icons.Bot size={20} /> <h4 className="font-bold text-sm">Asisten AI</h4> <button onClick={() => setIsChatOpen(false)} className="ml-auto"><Icons.X size={18} /></button></div>
+                                <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#FFFBF7]">
+                                    {chatMessages.map((msg, i) => (
+                                        <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                                            <div className={`max-w-[80%] rounded-2xl p-3 text-xs ${msg.role === 'user' ? 'bg-[#C9A84C] text-[#2C1B1D]' : 'bg-[#FDF6ED] text-[#564244]'}`}><p>{msg.text}</p></div>
+                                        </div>
+                                    ))}
+                                    <div ref={chatEndRef} />
+                                </div>
+                                <div className="p-3 bg-white flex items-center gap-2 border-t">
+                                    <input type="text" value={chatInput} onChange={(e) => setChatInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSendMessageToBot()} placeholder="Tanyakan sesuatu..." className="flex-1 bg-gray-50 text-xs rounded-xl p-3 outline-none" />
+                                    <button onClick={() => handleSendMessageToBot()} className="bg-[#2C1B1D] text-white p-3 rounded-xl"><Icons.Send size={14} /></button>
+                                </div>
+                            </div>
+                        )}
 
-              <section className="py-24 px-6 bg-[#2C1B1D] text-white text-center">
-                <ScrollReveal>
-                  <Icons.Heart
-                    className="mx-auto mb-6 text-[#C9A84C]"
-                    size={26}
-                  />
-                  <p className="italic font-serif-lux text-xl sm:text-2xl mb-6 text-[#F5E6D3] max-w-2xl mx-auto">
-                    "Demikianlah mereka bukan lagi dua, melainkan satu..."
-                  </p>
-                </ScrollReveal>
-              </section>
+                        <section className="min-h-screen relative flex flex-col items-center justify-center text-center px-4 pt-10 overflow-hidden">
+                            <div className="absolute inset-0 z-0 scale-110" style={{ transform: `translateY(${scrollY * 0.15}px)` }}>
+                                <img src={HERO_IMAGE_URL} alt="Main" className="w-full h-full object-cover opacity-15" />
+                            </div>
+                            <div className="relative z-20 flex flex-col items-center max-w-lg animate-fadeIn">
+                                <div className="mb-8 animate-bounceSlow relative">
+                                    <img src={HERO_IMAGE_URL} alt="Couple" className="w-60 h-80 object-cover rounded-t-full shadow-2xl border-4 border-[#FFFBF7] relative z-10" />
+                                </div>
+                                <h2 className="text-xs tracking-[0.4em] uppercase mb-4 text-[#C9A84C] font-semibold">The Wedding of</h2>
+                                <h1 className="text-5xl sm:text-6xl font-serif-lux mb-4 text-[#2C1B1D] font-light">Hendry & Nesra</h1>
+                                <DiamondDivider />
+                                <p className="text-sm font-serif-lux italic text-[#C9A84C] mb-8">Kamis, 20 Agustus 2026</p>
+                                <div className="flex gap-4 mb-12">
+                                    {['Hari', 'Jam', 'Menit', 'Detik'].map((label, i) => (
+                                        <div key={label} className="text-center">
+                                            <div className="bg-white/80 w-14 h-14 flex items-center justify-center rounded-2xl mb-1.5 shadow"><span className="text-lg font-semibold text-[#2C1B1D] font-serif-lux">{Object.values(timeLeft)[i] || '0'}</span></div>
+                                            <span className="text-[9px] uppercase tracking-widest font-semibold">{label}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
 
-              <section className="py-24 px-6 max-w-lg mx-auto">
-                <ScrollReveal>
-                  <div className="text-center mb-10">
-                    <h2 className="text-3xl font-serif-lux mb-2">
-                      Konfirmasi Kehadiran
-                    </h2>
-                    <DiamondDivider />
-                  </div>
-                </ScrollReveal>
-                <ScrollReveal delay={100}>
-                  <form className="space-y-4" onSubmit={submitRSVP}>
-                    <input
-                      type="text"
-                      value={rsvpData.name}
-                      onChange={(e) =>
-                        setRsvpData({ ...rsvpData, name: e.target.value })
-                      }
-                      className="w-full bg-[#FDF6ED] p-4 rounded-2xl text-xs outline-none"
-                      placeholder="Nama Anda"
-                      required
-                    />
-                    <div className="grid grid-cols-2 gap-4">
-                      <select
-                        value={rsvpData.attendance}
-                        onChange={(e) =>
-                          setRsvpData({
-                            ...rsvpData,
-                            attendance: e.target.value,
-                          })
-                        }
-                        className="w-full bg-[#FDF6ED] p-4 rounded-2xl text-xs outline-none"
-                      >
-                        <option>Hadir</option>
-                        <option>Tidak Hadir</option>
-                      </select>
-                      <select
-                        value={rsvpData.guests}
-                        onChange={(e) =>
-                          setRsvpData({ ...rsvpData, guests: e.target.value })
-                        }
-                        className="w-full bg-[#FDF6ED] p-4 rounded-2xl text-xs outline-none"
-                      >
-                        <option>1 Orang</option>
-                        <option>2 Orang</option>
-                      </select>
+                        <section className="py-24 px-6 bg-[#2C1B1D] text-white text-center">
+                            <ScrollReveal><Icons.Heart className="mx-auto mb-6 text-[#C9A84C]" size={26} /><p className="italic font-serif-lux text-xl sm:text-2xl mb-6 text-[#F5E6D3] max-w-2xl mx-auto">"Demikianlah mereka bukan lagi dua, melainkan satu..."</p></ScrollReveal>
+                        </section>
+
+                        <section className="py-24 px-6 max-w-lg mx-auto">
+                            <ScrollReveal><div className="text-center mb-10"><h2 className="text-3xl font-serif-lux mb-2">Konfirmasi Kehadiran</h2><DiamondDivider /></div></ScrollReveal>
+                            <ScrollReveal delay={100}>
+                                <form className="space-y-4" onSubmit={submitRSVP}>
+                                    <input type="text" value={rsvpData.name} onChange={(e) => setRsvpData({...rsvpData, name: e.target.value})} className="w-full bg-[#FDF6ED] p-4 rounded-2xl text-xs outline-none" placeholder="Nama Anda" required />
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <select value={rsvpData.attendance} onChange={(e) => setRsvpData({...rsvpData, attendance: e.target.value})} className="w-full bg-[#FDF6ED] p-4 rounded-2xl text-xs outline-none"><option>Hadir</option><option>Tidak Hadir</option></select>
+                                        <select value={rsvpData.guests} onChange={(e) => setRsvpData({...rsvpData, guests: e.target.value})} className="w-full bg-[#FDF6ED] p-4 rounded-2xl text-xs outline-none"><option>1 Orang</option><option>2 Orang</option></select>
+                                    </div>
+                                    <button type="submit" disabled={isSubmittingRsvp} className="w-full bg-gradient-to-r from-[#DFBA5E] to-[#E5C169] text-[#2C1B1D] py-4 rounded-2xl font-bold flex items-center justify-center gap-2 text-xs">{isSubmittingRsvp ? "Menyimpan..." : "Kirim Konfirmasi"}</button>
+                                </form>
+                            </ScrollReveal>
+                        </section>
+
+                        <section className="py-24 px-6 bg-[#FDF6ED]">
+                            <div className="max-w-2xl mx-auto">
+                                <ScrollReveal><div className="text-center mb-10"><h2 className="text-3xl font-serif-lux mb-2">Buku Tamu</h2><DiamondDivider /></div></ScrollReveal>
+                                <ScrollReveal delay={100}>
+                                    <div className="bg-white p-6 rounded-3xl shadow-lg mb-8">
+                                        <input type="text" value={newComment.name} onChange={(e) => setNewComment({...newComment, name: e.target.value})} className="w-full bg-[#FFFBF7] p-3.5 mb-3 rounded-xl text-xs outline-none" placeholder="Nama Anda" />
+                                        <textarea value={newComment.message} onChange={(e) => setNewComment({...newComment, message: e.target.value})} className="w-full bg-[#FFFBF7] p-4 mb-4 rounded-xl text-xs outline-none resize-none" placeholder="Tulis ucapan..." rows={4} />
+                                        <button onClick={submitComment} disabled={isSubmittingComment} className="bg-[#2C1B1D] text-white px-8 py-3 rounded-full text-xs font-bold">{isSubmittingComment ? "Mengirim..." : "Kirim Ucapan"}</button>
+                                    </div>
+                                </ScrollReveal>
+                                <ScrollReveal delay={200}>
+                                    <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                                        {isLoadingComments ? <p className="text-center text-xs text-gray-400">Memuat...</p> : guestBook.map((msg, i) => (
+                                            <div key={i} className="bg-white/80 p-5 rounded-2xl shadow-sm border-l-4 border-[#C9A84C]"><p className="font-bold text-sm text-[#2C1B1D] font-serif-lux">{msg.name}</p><p className="text-xs font-light mt-1 italic">"{msg.message}"</p><p className="text-[9px] text-gray-400 mt-2">{msg.date}</p></div>
+                                        ))}
+                                    </div>
+                                </ScrollReveal>
+                            </div>
+                        </section>
+
+                        <footer className="py-16 bg-[#2C1B1D] text-center px-6 border-t-2 border-[#C9A84C]/25">
+                            <p className="text-lg tracking-[0.3em] uppercase font-light font-serif-lux text-[#C9A84C]">Hendry & Nesra</p>
+                            <p className="text-[10px] mt-2 text-[#E8C5C8]">© 2026 Wedding Invitation</p>
+                        </footer>
                     </div>
-                    <button
-                      type="submit"
-                      disabled={isSubmittingRsvp}
-                      className="w-full bg-gradient-to-r from-[#DFBA5E] to-[#E5C169] text-[#2C1B1D] py-4 rounded-2xl font-bold flex items-center justify-center gap-2 text-xs"
-                    >
-                      {isSubmittingRsvp ? "Menyimpan..." : "Kirim Konfirmasi"}
-                    </button>
-                  </form>
-                </ScrollReveal>
-              </section>
+                );
+            };
 
-              <section className="py-24 px-6 bg-[#FDF6ED]">
-                <div className="max-w-2xl mx-auto">
-                  <ScrollReveal>
-                    <div className="text-center mb-10">
-                      <h2 className="text-3xl font-serif-lux mb-2">
-                        Buku Tamu
-                      </h2>
-                      <DiamondDivider />
-                    </div>
-                  </ScrollReveal>
-                  <ScrollReveal delay={100}>
-                    <div className="bg-white p-6 rounded-3xl shadow-lg mb-8">
-                      <input
-                        type="text"
-                        value={newComment.name}
-                        onChange={(e) =>
-                          setNewComment({ ...newComment, name: e.target.value })
-                        }
-                        className="w-full bg-[#FFFBF7] p-3.5 mb-3 rounded-xl text-xs outline-none"
-                        placeholder="Nama Anda"
-                      />
-                      <textarea
-                        value={newComment.message}
-                        onChange={(e) =>
-                          setNewComment({
-                            ...newComment,
-                            message: e.target.value,
-                          })
-                        }
-                        className="w-full bg-[#FFFBF7] p-4 mb-4 rounded-xl text-xs outline-none resize-none"
-                        placeholder="Tulis ucapan..."
-                        rows={4}
-                      />
-                      <button
-                        onClick={submitComment}
-                        disabled={isSubmittingComment}
-                        className="bg-[#2C1B1D] text-white px-8 py-3 rounded-full text-xs font-bold"
-                      >
-                        {isSubmittingComment ? "Mengirim..." : "Kirim Ucapan"}
-                      </button>
-                    </div>
-                  </ScrollReveal>
-                  <ScrollReveal delay={200}>
-                    <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-                      {isLoadingComments ? (
-                        <p className="text-center text-xs text-gray-400">
-                          Memuat...
-                        </p>
-                      ) : (
-                        guestBook.map((msg, i) => (
-                          <div
-                            key={i}
-                            className="bg-white/80 p-5 rounded-2xl shadow-sm border-l-4 border-[#C9A84C]"
-                          >
-                            <p className="font-bold text-sm text-[#2C1B1D] font-serif-lux">
-                              {msg.name}
-                            </p>
-                            <p className="text-xs font-light mt-1 italic">
-                              "{msg.message}"
-                            </p>
-                            <p className="text-[9px] text-gray-400 mt-2">
-                              {msg.date}
-                            </p>
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  </ScrollReveal>
-                </div>
-              </section>
-
-              <footer className="py-16 bg-[#2C1B1D] text-center px-6 border-t-2 border-[#C9A84C]/25">
-                <p className="text-lg tracking-[0.3em] uppercase font-light font-serif-lux text-[#C9A84C]">
-                  Hendry & Nesra
-                </p>
-                <p className="text-[10px] mt-2 text-[#E8C5C8]">
-                  © 2026 Wedding Invitation
-                </p>
-              </footer>
-            </div>
-          );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById("root"));
-        root.render(<App />);
-      } catch (error) {
-        document.getElementById("root").style.display = "none";
-        document.getElementById("error-screen").style.display = "flex";
-        document.getElementById("error-message").innerText = error.message;
-      }
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<App />);
+            
+        } catch (error) {
+            document.getElementById('root').style.display = 'none';
+            document.getElementById('error-screen').style.display = 'flex';
+            document.getElementById('error-message').innerText = error.message;
+        }
     </script>
-  </body>
+</body>
 </html>
